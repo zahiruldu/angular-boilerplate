@@ -1,0 +1,23 @@
+
+<mat-toolbar>
+	<button mat-button routerLink="home" >Home</button>
+
+	<button mat-icon-button [matMenuTriggerFor]="menu">
+  <mat-icon>format_align_justify</mat-icon>
+</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item *ngIf="isAuthenticated">
+    <mat-icon>exit_to_app</mat-icon>
+    <span>Logout</span>
+  </button>
+  <button mat-menu-item routerLink="login" *ngIf="!isAuthenticated">
+    <mat-icon>forward</mat-icon>
+    <span>Login</span>
+  </button>
+  <button mat-menu-item routerLink="register" *ngIf="!isAuthenticated">
+    <mat-icon>create</mat-icon>
+    <span>Register</span>
+  </button>
+</mat-menu>
+</mat-toolbar>
+
