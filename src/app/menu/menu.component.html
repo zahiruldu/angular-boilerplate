@@ -2,9 +2,12 @@
 <mat-toolbar>
 	<button mat-button routerLink="home" >Home</button>
 
-	<button mat-icon-button [matMenuTriggerFor]="menu">
+	
+<div class="right-menu">
+  <button mat-icon-button [matMenuTriggerFor]="menu" >
   <mat-icon>format_align_justify</mat-icon>
 </button>
+</div>
 <mat-menu #menu="matMenu">
   <button mat-menu-item *ngIf="isAuthenticated">
     <mat-icon>exit_to_app</mat-icon>

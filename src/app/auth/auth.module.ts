@@ -7,7 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
-import { AuthGuard } from './auth.guard';
+import { AuthService } from './auth.service';
 
 @NgModule({
   imports: [
@@ -16,6 +16,6 @@ import { AuthGuard } from './auth.guard';
     MaterialModule
   ],
   declarations: [LoginComponent, RegisterComponent, ForgotpasswordComponent, ResetpasswordComponent],
-  providers: [AuthGuard]
+  providers: [AuthService]
 })
 export class AuthModule { }

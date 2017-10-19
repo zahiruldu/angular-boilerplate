@@ -13,7 +13,7 @@ import { MenuModule } from './menu/menu.module';
 import { AuthGuard } from './middlewares/auth.guard';
 
 const appRoutes: Routes = [
-  { path: 'home',canActivate:[AuthGuard], component: HomeComponent },
+  { path: 'home', canActivate:[AuthGuard], component: HomeComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
 
