@@ -8,26 +8,21 @@ import {
     CanLoad, Route
 } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import { AuthService } from '../auth/auth.service';
+import { AuthService } from './../auth/auth.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-  // canActivate(
-  //   next: ActivatedRouteSnapshot,
-  //   state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-  //   return false;
-  // }
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     let url: string = state.url;
 
     return this.checkLogin(url);
   }
 
-  canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    return this.canActivate(route, state);
+  canActivateChild(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    return this.canActivate(next, state);
   }
 
   canLoad(route: Route): boolean {
@@ -43,7 +38,7 @@ export class AuthGuard implements CanActivate {
     this.authService.redirectUrl = url;
 
     // Create a dummy session id
-    let sessionId = 123456789;
+    let sessionId = Math.floor((Math.random() * 2000) * 2000);
 
     // Set our navigation extras object
     // that contains our global query params and fragment

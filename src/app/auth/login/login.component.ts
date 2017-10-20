@@ -10,8 +10,7 @@ import { AuthService }      from './../auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-  // constructor() { }
+  
   model: any = {};
 
   ngOnInit() {
@@ -20,22 +19,18 @@ export class LoginComponent implements OnInit {
    message: string;
 
   constructor(public authService: AuthService, public router: Router) {
-    this.setMessage();
+    this.message = '';
   }
 
-  setMessage() {
-    this.message = 'Logged ' + (this.authService.isLoggedIn ? 'in' : 'out');
-  }
 
-  login(data: any) {
+  login() {
     console.log(localStorage)
     this.message = 'Trying to log in ...';
        // store username and jwt token in local storage to keep user logged in between page refreshes
       localStorage.setItem('currentUser', JSON.stringify({ username: this.model.username, token: this.model.password }));
 
 
-    this.authService.login().subscribe(() => {
-      this.setMessage();
+    this.authService.login(this.model).subscribe(() => {
       if (this.authService.isLoggedIn) {
         // Get the redirect URL from our auth service
         // If no redirect has been set, use the default
@@ -57,7 +52,6 @@ export class LoginComponent implements OnInit {
   logout() {
     this.authService.logout();
     //this.router.navigate(['/login']);
-    this.setMessage();
   }
 
 }
