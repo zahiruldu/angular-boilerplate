@@ -9,15 +9,15 @@
 </button>
 </div>
 <mat-menu #menu="matMenu">
-  <button mat-menu-item *ngIf="isAuthenticated">
+  <button mat-menu-item *ngIf="authService.isLoggedIn" (click)="logout()">
     <mat-icon>exit_to_app</mat-icon>
     <span>Logout</span>
   </button>
-  <button mat-menu-item routerLink="login" *ngIf="!isAuthenticated">
+  <button mat-menu-item routerLink="login" *ngIf="!authService.isLoggedIn">
     <mat-icon>forward</mat-icon>
     <span>Login</span>
   </button>
-  <button mat-menu-item routerLink="register" *ngIf="!isAuthenticated">
+  <button mat-menu-item routerLink="register" *ngIf="!authService.isLoggedIn">
     <mat-icon>create</mat-icon>
     <span>Register</span>
   </button>
