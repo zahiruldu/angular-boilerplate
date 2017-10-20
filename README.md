@@ -2,8 +2,7 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.5.
 
-
-![Picture](https://github.com/zahiruldu/angular-boilerplate/tree/master/src/assets/screen.gif)
+![demo](src/assets/screen.gif)
 
 ## Development server
 
