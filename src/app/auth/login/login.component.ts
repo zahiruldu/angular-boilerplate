@@ -12,6 +12,7 @@ import { AuthService }      from './../auth.service';
 export class LoginComponent implements OnInit {
 
   // constructor() { }
+  model: any = {};
 
   ngOnInit() {
   }
@@ -26,8 +27,12 @@ export class LoginComponent implements OnInit {
     this.message = 'Logged ' + (this.authService.isLoggedIn ? 'in' : 'out');
   }
 
-  login() {
+  login(data: any) {
+    console.log(localStorage)
     this.message = 'Trying to log in ...';
+       // store username and jwt token in local storage to keep user logged in between page refreshes
+      localStorage.setItem('currentUser', JSON.stringify({ username: this.model.username, token: this.model.password }));
+
 
     this.authService.login().subscribe(() => {
       this.setMessage();
