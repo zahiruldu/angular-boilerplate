@@ -4,6 +4,15 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ![demo](src/assets/screen.gif)
 
+
+## Install
+
+```bash
+git clone git@github.com:zahiruldu/angular-boilerplate.git
+cd angular-boilerplate
+npm install 
+ng serve --open
+```
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
