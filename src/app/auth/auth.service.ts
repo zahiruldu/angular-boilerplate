@@ -23,15 +23,17 @@ export class AuthService {
       }
   }
 
-  login(data: any): Observable<boolean> {
-    return Observable.of(true).delay(1000).do(val => {
-      // Make a http api call here 
-      if (localStorage.getItem('currentUser')) {
-        this.isLoggedIn = true
-      } else {
-        this.isLoggedIn = false
-      }
-    });
+
+  login(data: any): Observable<any> {
+
+    return Observable.of(data);
+
+    // Serverside api call
+    // let url: any ='http://example.com/login';
+    // let header = new HttpHeaders();
+    // return this.http.post(url,data,{headers: header })
+    //            .do(data => JSON.stringify(data))
+    //            .catch((error:HttpErrorResponse)=>Observable.throw(error || 'Server error'));
   }
 
   logout(): void {
@@ -39,12 +41,16 @@ export class AuthService {
     localStorage.removeItem('currentUser');
   }
 
-  register(data: any): Observable<boolean> {
-    return Observable.of(true).delay(1000).do(val=> {
-      // Make a http api call if needed here
-      this.isLoggedIn = true
-    });
+  register(data: any): Observable<any> {
 
+    return Observable.of(data);
+
+    // Serverside Api call
+    // let url: any = 'http://example.com/register';
+    // let header = new HttpHeaders();
+    // return this.http.post(url,data,{headers: header })
+    //            .do(data => JSON.stringify(data))
+    //            .catch((error:HttpErrorResponse)=>Observable.throw(error || 'Server error'));
   }
 
 }

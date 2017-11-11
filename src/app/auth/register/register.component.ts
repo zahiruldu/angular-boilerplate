@@ -21,28 +21,41 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
+    this.message = 'Registering your account ...';
 
-  	this.message = 'Registering your account ...';
-
-  	localStorage.setItem('currentUser', JSON.stringify(this.model));
-
-  	this.authService.register(this.model).subscribe(()=> {
-  		if (this.authService.isLoggedIn) {
-        // Get the redirect URL from our auth service
-        // If no redirect has been set, use the default
-        let redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/home';
-
-        // Set our navigation extras object
-        // that passes on our global query params and fragment
-        let navigationExtras: NavigationExtras = {
-          queryParamsHandling: 'preserve',
-          preserveFragment: true
+    this.authService.register(this.model).subscribe(result=>{
+   
+      let storeData: any = {
+          token: result.password,
+          email: result.email
         };
+        localStorage.setItem('currentUser', JSON.stringify(storeData));
+        this.authService.isLoggedIn = true;
+        this.message = 'Registration success!';
+        setTimeout(()=>{
+          if (this.authService.isLoggedIn) {
+            // Get the redirect URL from our auth service
+            // If no redirect has been set, use the default
+            let redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/';
 
-        // Redirect the user
-        this.router.navigate([redirect], navigationExtras);
-      }
-  	});
+            // Set our navigation extras object
+            // that passes on our global query params and fragment
+            let navigationExtras: NavigationExtras = {
+              queryParamsHandling: 'preserve',
+              preserveFragment: true
+            };
+
+            // Redirect the user
+            this.router.navigate([redirect], navigationExtras);
+          }
+
+        },2000);
+
+    },
+    error=>{
+      console.log(error);
+    })
+
   }
 
 }

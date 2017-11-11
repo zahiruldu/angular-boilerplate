@@ -5,12 +5,14 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
+import { AuthlessPageGuard } from './../middlewares/authless-page.guard';
+
 
 const routes: Routes = [
-  { path: 'register', component: RegisterComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'forgotpass', component: ForgotpasswordComponent },
-  { path: 'resetpass', component: ResetpasswordComponent }
+  { path: 'register', canActivate:[AuthlessPageGuard], component: RegisterComponent },
+  { path: 'login', canActivate:[AuthlessPageGuard], component: LoginComponent },
+  { path: 'forgotpass', canActivate:[AuthlessPageGuard], component: ForgotpasswordComponent },
+  { path: 'resetpass', canActivate:[AuthlessPageGuard], component: ResetpasswordComponent }
   ];
 
 @NgModule({

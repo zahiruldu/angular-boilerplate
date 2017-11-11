@@ -24,29 +24,42 @@ export class LoginComponent implements OnInit {
 
 
   login() {
-    console.log(localStorage)
-    this.message = 'Trying to log in ...';
-       // store username and jwt token in local storage to keep user logged in between page refreshes
-      localStorage.setItem('currentUser', JSON.stringify({ username: this.model.username, token: this.model.password }));
+    this.message = 'Tring to log in ...';
 
+    this.authService.login(this.model).subscribe(result=>{
 
-    this.authService.login(this.model).subscribe(() => {
-      if (this.authService.isLoggedIn) {
-        // Get the redirect URL from our auth service
-        // If no redirect has been set, use the default
-        let redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/home';
-
-        // Set our navigation extras object
-        // that passes on our global query params and fragment
-        let navigationExtras: NavigationExtras = {
-          queryParamsHandling: 'preserve',
-          preserveFragment: true
+      let storeData: any = {
+          token: result.password, // it can be your auth token, recieved from serverside
+          email: result.email
         };
+        localStorage.setItem('currentUser', JSON.stringify(storeData));
+        this.authService.isLoggedIn = true;
 
-        // Redirect the user
-        this.router.navigate([redirect], navigationExtras);
-      }
-    });
+        this.message = 'Login success!';
+
+        setTimeout(()=>{
+          if (this.authService.isLoggedIn) {
+            // Get the redirect URL from our auth service
+            // If no redirect has been set, use the default
+            let redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/';
+
+            // Set our navigation extras object
+            // that passes on our global query params and fragment
+            let navigationExtras: NavigationExtras = {
+              queryParamsHandling: 'preserve',
+              preserveFragment: true
+            };
+
+            // Redirect the user
+            this.router.navigate([redirect], navigationExtras);
+          }
+
+        },2000);
+    },
+    error=>{
+      console.log(error);
+      this.message = error;
+    })
   }
 
   logout() {

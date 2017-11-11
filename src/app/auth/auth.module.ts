@@ -9,6 +9,7 @@ import { RegisterComponent } from './register/register.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { AuthService } from './auth.service';
+import { AuthlessPageGuard } from '../middlewares/authless-page.guard';
 
 @NgModule({
   imports: [
@@ -18,6 +19,6 @@ import { AuthService } from './auth.service';
     MaterialModule
   ],
   declarations: [LoginComponent, RegisterComponent, ForgotpasswordComponent, ResetpasswordComponent],
-  providers: [AuthService]
+  providers: [AuthService, AuthlessPageGuard]
 })
 export class AuthModule { }

@@ -4,16 +4,16 @@
 <form >
 
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="Email Address" [(ngModel)]="model.email" name="email">
+      <input type="email" matInput placeholder="Email Address" [(ngModel)]="model.email" name="email" required>
     </mat-form-field>
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="Password" [(ngModel)]="model.password" name="password">
+      <input type="password" matInput placeholder="Password" [(ngModel)]="model.password" name="password" required>
     </mat-form-field>
  
 
 </form>
 <button mat-raised-button color="primary" (click)="login()">Login</button>
 <button mat-raised-button color="accent">Cancel</button>
-<p> <a href="forgotpass" >forgot password? </a>  &nbsp; &nbsp; <a href="register">Register</a></p>
+<p> <a  routerLink="/forgotpass">forgot password? </a>  &nbsp; &nbsp; <a routerLink="/register">Register</a></p>
 	
 </mat-card>

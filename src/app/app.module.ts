@@ -11,16 +11,18 @@ import { HomeModule } from './home/home.module';
 import { AuthModule } from './auth/auth.module';
 import { MenuModule } from './menu/menu.module';
 import { AuthGuard } from './middlewares/auth.guard';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const appRoutes: Routes = [
-  { path: 'home', canActivate:[AuthGuard], component: HomeComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', canActivate:[AuthGuard], component: HomeComponent },
+  { path: '**',component: NotFoundComponent },
 ];
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
